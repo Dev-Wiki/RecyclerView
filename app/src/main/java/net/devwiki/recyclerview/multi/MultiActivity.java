@@ -1,7 +1,9 @@
-package net.devwiki.recyclerview;
+package net.devwiki.recyclerview.multi;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import net.devwiki.recyclerview.R;
 
 public class MultiActivity extends AppCompatActivity {
 

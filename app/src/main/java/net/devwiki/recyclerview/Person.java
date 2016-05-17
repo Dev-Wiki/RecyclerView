@@ -1,4 +1,4 @@
-package net.devwiki.recyclerview.single;
+package net.devwiki.recyclerview;
 
 import java.io.Serializable;
 

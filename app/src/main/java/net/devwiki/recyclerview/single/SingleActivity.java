@@ -6,8 +6,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
+import net.devwiki.recyclerview.Person;
 import net.devwiki.recyclerview.R;
-import net.devwiki.recyclerview.base.BaseAdapter;
 import net.devwiki.recyclerview.base.DividerItemDecoration;
 
 import java.util.ArrayList;
