@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * 基础的Adapter
  * Created by zyz on 2016/5/17.
  */
 public abstract class BaseAdapter<M, H extends BaseHolder<M>> extends RecyclerView.Adapter<H> {
@@ -20,10 +21,10 @@ public abstract class BaseAdapter<M, H extends BaseHolder<M>> extends RecyclerVi
     }
 
     /**
-     * 无参数构造方法
+     * 无参数构造方法,数据调用{@link BaseAdapter#fillList(List)}填充
      */
     public BaseAdapter() {
-
+        dataList = new ArrayList<>();
     }
 
     /**

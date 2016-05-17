@@ -9,4 +9,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".multi.MultiActivity">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/multi_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v7.widget.RecyclerView>
+
 </RelativeLayout>

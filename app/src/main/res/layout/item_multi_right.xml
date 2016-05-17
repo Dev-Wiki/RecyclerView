@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal" android:layout_width="180dp"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
     android:layout_height="48dp"
-    android:gravity="center_vertical"
-    android:layout_gravity="right">
+    android:layout_gravity="right"
+    android:gravity="center_vertical">
 
     <TextView
         android:id="@+id/name_tv"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/age_tv"
         android:gravity="center"
         android:text="name"
         android:textSize="20sp"/>
@@ -17,6 +18,7 @@
         android:id="@+id/age_tv"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
+        android:layout_toLeftOf="@+id/sex_tv"
         android:gravity="center"
         android:text="22"
         android:textSize="20sp"/>
@@ -25,8 +27,9 @@
         android:id="@+id/sex_tv"
         android:layout_width="40dp"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
         android:gravity="center"
         android:text="男"
         android:textSize="20sp"/>
 
-</LinearLayout>
+</RelativeLayout>
