@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 
 import net.devwiki.recycler.BaseAdapter;
 import net.devwiki.recycler.DividerItemDecoration;
+import net.devwiki.recyclerview.MockService;
 import net.devwiki.recyclerview.R;
 
 public class ChatActivity extends AppCompatActivity {

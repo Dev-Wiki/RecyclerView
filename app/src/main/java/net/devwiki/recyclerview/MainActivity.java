@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.View;
 
 import net.devwiki.recyclerview.chat.ChatActivity;
-import net.devwiki.recyclerview.multi.MultiActivity;
 import net.devwiki.recyclerview.single.SingleActivity;
 
 public class MainActivity extends AppCompatActivity {
