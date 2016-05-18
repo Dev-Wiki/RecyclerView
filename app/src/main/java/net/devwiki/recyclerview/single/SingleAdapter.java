@@ -29,14 +29,14 @@ public class SingleAdapter extends BaseAdapter<Person, SingleHolder> {
         holder.nameView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((SingleItemClickListener) listener).onNameClick(getData(holder).getName());
+                ((SingleItemClickListener) listener).onNameClick(getItem(holder).getName());
             }
         });
 
         holder.ageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((SingleItemClickListener) listener).onAgeClick(getData(holder).getAge());
+                ((SingleItemClickListener) listener).onAgeClick(getItem(holder).getAge());
             }
         });
     }

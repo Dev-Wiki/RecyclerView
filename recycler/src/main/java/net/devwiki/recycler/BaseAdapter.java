@@ -29,6 +29,7 @@ public abstract class BaseAdapter<M, H extends BaseHolder<M>> extends RecyclerVi
 
     /**
      * 设置一个Item点击回调接口,数据后续调用{@link BaseAdapter#fillList(List)}填充
+     *
      * @param listener 回调接口
      */
     public BaseAdapter(OnItemClickListener<H> listener) {
@@ -38,6 +39,7 @@ public abstract class BaseAdapter<M, H extends BaseHolder<M>> extends RecyclerVi
 
     /**
      * 设置数据,并设置点击回调接口
+     *
      * @param list
      * @param listener
      */
@@ -64,10 +66,6 @@ public abstract class BaseAdapter<M, H extends BaseHolder<M>> extends RecyclerVi
         return dataList.size();
     }
 
-    public M getData(H holder) {
-        return dataList.get(holder.getLayoutPosition());
-    }
-
     public void fillList(List<M> list) {
         dataList.clear();
         dataList.addAll(list);
@@ -75,24 +73,38 @@ public abstract class BaseAdapter<M, H extends BaseHolder<M>> extends RecyclerVi
 
     /**
      * 更新数据
-     * @param holder
-     * @param data
+     *
+     * @param holder item对应的holder
+     * @param data   item的数据
      */
     public void updateItem(H holder, M data) {
         dataList.set(holder.getLayoutPosition(), data);
     }
 
+    /**
+     * 获取一条数据
+     *
+     * @param holder item对应的holder
+     * @return 该item对应的数据
+     */
     public M getItem(H holder) {
         return dataList.get(holder.getLayoutPosition());
     }
 
+    /**
+     * 获取一条数据
+     *
+     * @param position item的位置
+     * @return item对应的数据
+     */
     public M getItem(int position) {
         return dataList.get(position);
     }
 
     /**
      * 追加一条数据
-     * @param data
+     *
+     * @param data 追击的数据
      */
     public void appendItem(M data) {
         dataList.add(data);
@@ -100,13 +112,36 @@ public abstract class BaseAdapter<M, H extends BaseHolder<M>> extends RecyclerVi
 
     /**
      * 追加一个集合数据
-     * @param list
+     *
+     * @param list 要追击的数据集合
      */
     public void appendList(List<M> list) {
         dataList.addAll(list);
     }
 
-    public interface OnItemClickListener<H extends BaseHolder>{
+    /**
+     * 在最顶部前置数据
+     *
+     * @param data 要前置的数据
+     */
+    public void preposeItem(M data) {
+        dataList.add(0, data);
+    }
+
+    /**
+     * 在顶部前置数据集合
+     *
+     * @param list 要前置的数据集合
+     */
+    public void preposeList(List<M> list) {
+        dataList.addAll(0, list);
+    }
+
+    /**
+     *
+     * @param <H>
+     */
+    public interface OnItemClickListener<H extends BaseHolder> {
         void onItemClick(H holder);
     }
 }
