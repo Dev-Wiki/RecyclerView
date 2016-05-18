@@ -16,10 +16,6 @@ public abstract class BaseAdapter<M, H extends BaseHolder<M>> extends RecyclerVi
     protected List<M> dataList;
     protected OnItemClickListener<M, H> listener;
 
-    public interface OnItemClickListener<M, H extends BaseHolder<M>>{
-        void onItemClick(H holder, M data);
-    }
-
     /**
      * 无参数构造方法,数据调用{@link BaseAdapter#fillList(List)}填充
      */
@@ -73,11 +69,32 @@ public abstract class BaseAdapter<M, H extends BaseHolder<M>> extends RecyclerVi
         dataList.addAll(list);
     }
 
+    /**
+     * 更新数据
+     * @param holder
+     * @param data
+     */
+    public void update(H holder, M data) {
+        dataList.set(holder.getLayoutPosition(), data);
+    }
+
+    /**
+     * 追加一条数据
+     * @param data
+     */
     public void append(M data) {
         dataList.add(data);
     }
 
+    /**
+     * 追加一个集合数据
+     * @param list
+     */
     public void appendList(List<M> list) {
         dataList.addAll(list);
+    }
+
+    public interface OnItemClickListener<M, H extends BaseHolder<M>>{
+        void onItemClick(H holder, M data);
     }
 }
