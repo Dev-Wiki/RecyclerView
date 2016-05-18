@@ -1,4 +1,4 @@
-package net.devwiki.recyclerview.base;
+package net.devwiki.recycler;
 
 import android.content.Context;
 import android.support.annotation.IdRes;

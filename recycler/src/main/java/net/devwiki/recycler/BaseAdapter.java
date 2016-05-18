@@ -1,4 +1,4 @@
-package net.devwiki.recyclerview.base;
+package net.devwiki.recycler;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
