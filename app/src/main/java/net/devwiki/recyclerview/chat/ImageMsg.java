@@ -1,4 +1,4 @@
-package net.devwiki.recyclerview.multi;
+package net.devwiki.recyclerview.chat;
 
 import android.support.annotation.DrawableRes;
 

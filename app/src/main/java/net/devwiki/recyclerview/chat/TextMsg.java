@@ -1,4 +1,4 @@
-package net.devwiki.recyclerview.multi;
+package net.devwiki.recyclerview.chat;
 
 /**
  * Created by zyz on 2016/5/18.

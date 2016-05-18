@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import net.devwiki.recyclerview.chat.ChatActivity;
 import net.devwiki.recyclerview.multi.MultiActivity;
 import net.devwiki.recyclerview.single.SingleActivity;
 
@@ -23,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         if (view.getId() == R.id.single_tv) {
             startActivity(new Intent(this, SingleActivity.class));
         } else if (view.getId() == R.id.multi_tv) {
-            startActivity(new Intent(this, MultiActivity.class));
+            startActivity(new Intent(this, ChatActivity.class));
         } else {
             Log.e(TAG, "onClick: not case");
         }

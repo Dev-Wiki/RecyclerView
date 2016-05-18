@@ -1,8 +1,10 @@
-package net.devwiki.recyclerview.multi;
+package net.devwiki.recyclerview.chat;
 
 import net.devwiki.recyclerview.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
@@ -26,13 +28,23 @@ public class MockService {
                 TextMsg textMsg = new TextMsg();
                 textMsg.setText("text-" + i);
                 textMsg.setSenderName("Bob");
+                textMsg.setMsgType(ChatMsg.TYPE_TEXT);
+                textMsg.setCreateTime(getShowTime(System.currentTimeMillis() - i*value*1000));
+                list.add(textMsg);
             } else {
                 ImageMsg imageMsg = new ImageMsg();
-                imageMsg.setSenderName("Bob");
-                imageMsg.setResId();
+                imageMsg.setSenderName("Mary");
+                imageMsg.setMsgType(ChatMsg.TYPE_IMAGE);
+                imageMsg.setResId(drawableRes[i/2]);
+                imageMsg.setCreateTime(getShowTime(System.currentTimeMillis() + i*value*1000));
+                list.add(imageMsg);
             }
         }
-
         return list;
+    }
+
+    private String getShowTime(long time) {
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        return format.format(new Date(time));
     }
 }

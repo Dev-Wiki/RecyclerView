@@ -20,7 +20,7 @@
         android:textSize="16sp"/>
 
     <ImageView
-        android:id="@+id/content_tv"
+        android:id="@+id/content_iv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginRight="16dp"
