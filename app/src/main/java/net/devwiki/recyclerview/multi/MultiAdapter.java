@@ -2,9 +2,9 @@ package net.devwiki.recyclerview.multi;
 
 import android.view.ViewGroup;
 
+import net.devwiki.recycler.BaseAdapter;
 import net.devwiki.recyclerview.Person;
 import net.devwiki.recyclerview.R;
-import net.devwiki.recyclerview.base.BaseAdapter;
 
 /**
  * 多View的Adapter

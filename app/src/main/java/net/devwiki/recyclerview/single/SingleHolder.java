@@ -4,9 +4,9 @@ import android.support.annotation.LayoutRes;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import net.devwiki.recycler.BaseHolder;
 import net.devwiki.recyclerview.Person;
 import net.devwiki.recyclerview.R;
-import net.devwiki.recyclerview.base.BaseHolder;
 
 /**
  * 一种View的Holder

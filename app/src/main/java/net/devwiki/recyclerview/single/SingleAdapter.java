@@ -3,9 +3,9 @@ package net.devwiki.recyclerview.single;
 import android.view.View;
 import android.view.ViewGroup;
 
+import net.devwiki.recycler.BaseAdapter;
 import net.devwiki.recyclerview.Person;
 import net.devwiki.recyclerview.R;
-import net.devwiki.recyclerview.base.BaseAdapter;
 
 /**
  * 一种item的Adapter
