@@ -46,7 +46,8 @@ public class SingleActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onItemClick(SingleHolder holder, Person data) {
+            public void onItemClick(SingleHolder holder) {
+                Person data = singleAdapter.getData(holder);
                 Toast.makeText(SingleActivity.this, data.toString(), Toast.LENGTH_SHORT).show();
             }
         });

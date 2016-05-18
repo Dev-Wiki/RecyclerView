@@ -14,7 +14,7 @@ import java.util.List;
 public abstract class BaseAdapter<M, H extends BaseHolder<M>> extends RecyclerView.Adapter<H> {
 
     protected List<M> dataList;
-    protected OnItemClickListener<M, H> listener;
+    protected OnItemClickListener<H> listener;
 
     /**
      * 无参数构造方法,数据调用{@link BaseAdapter#fillList(List)}填充
@@ -27,7 +27,7 @@ public abstract class BaseAdapter<M, H extends BaseHolder<M>> extends RecyclerVi
      * 设置一个Item点击回调接口,数据后续调用{@link BaseAdapter#fillList(List)}填充
      * @param listener 回调接口
      */
-    public BaseAdapter(OnItemClickListener<M, H> listener) {
+    public BaseAdapter(OnItemClickListener<H> listener) {
         dataList = new ArrayList<>();
         this.listener = listener;
     }
@@ -37,7 +37,7 @@ public abstract class BaseAdapter<M, H extends BaseHolder<M>> extends RecyclerVi
      * @param list
      * @param listener
      */
-    public BaseAdapter(@NonNull List<M> list, OnItemClickListener<M, H> listener) {
+    public BaseAdapter(@NonNull List<M> list, OnItemClickListener<H> listener) {
         this.dataList = list;
         this.listener = listener;
     }
@@ -49,7 +49,7 @@ public abstract class BaseAdapter<M, H extends BaseHolder<M>> extends RecyclerVi
             @Override
             public void onClick(View v) {
                 if (listener != null) {
-                    listener.onItemClick(holder, dataList.get(holder.getLayoutPosition()));
+                    listener.onItemClick(holder);
                 }
             }
         });
@@ -74,15 +74,23 @@ public abstract class BaseAdapter<M, H extends BaseHolder<M>> extends RecyclerVi
      * @param holder
      * @param data
      */
-    public void update(H holder, M data) {
+    public void updateItem(H holder, M data) {
         dataList.set(holder.getLayoutPosition(), data);
+    }
+
+    public M getItem(H holder) {
+        return dataList.get(holder.getLayoutPosition());
+    }
+
+    public M getItem(int position) {
+        return dataList.get(position);
     }
 
     /**
      * 追加一条数据
      * @param data
      */
-    public void append(M data) {
+    public void appendItem(M data) {
         dataList.add(data);
     }
 
@@ -94,7 +102,7 @@ public abstract class BaseAdapter<M, H extends BaseHolder<M>> extends RecyclerVi
         dataList.addAll(list);
     }
 
-    public interface OnItemClickListener<M, H extends BaseHolder<M>>{
-        void onItemClick(H holder, M data);
+    public interface OnItemClickListener<H extends BaseHolder>{
+        void onItemClick(H holder);
     }
 }

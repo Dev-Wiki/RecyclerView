@@ -16,7 +16,6 @@ public abstract class BaseHolder<M> extends RecyclerView.ViewHolder {
 
     public BaseHolder(ViewGroup parent, @LayoutRes int resId) {
         super(LayoutInflater.from(parent.getContext()).inflate(resId, parent, false));
-
     }
 
     /**

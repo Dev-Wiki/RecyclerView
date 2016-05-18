@@ -13,13 +13,6 @@ import net.devwiki.recyclerview.base.BaseAdapter;
  */
 public class SingleAdapter extends BaseAdapter<Person, SingleHolder> {
 
-    public interface SingleItemClickListener extends OnItemClickListener<Person, SingleHolder>{
-
-        void onNameClick(String name);
-
-        void onAgeClick(int age);
-    }
-
     public SingleAdapter(SingleItemClickListener listener) {
         super(listener);
         super.listener = listener;
@@ -46,5 +39,12 @@ public class SingleAdapter extends BaseAdapter<Person, SingleHolder> {
                 ((SingleItemClickListener) listener).onAgeClick(getData(holder).getAge());
             }
         });
+    }
+
+    public interface SingleItemClickListener extends OnItemClickListener<SingleHolder>{
+
+        void onNameClick(String name);
+
+        void onAgeClick(int age);
     }
 }
