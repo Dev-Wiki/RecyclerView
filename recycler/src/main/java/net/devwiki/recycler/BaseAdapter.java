@@ -23,6 +23,10 @@ public abstract class BaseAdapter<M, H extends BaseHolder<M>> extends RecyclerVi
         dataList = new ArrayList<>();
     }
 
+    public BaseAdapter(@NonNull List<M> list) {
+        this.dataList = list;
+    }
+
     /**
      * 设置一个Item点击回调接口,数据后续调用{@link BaseAdapter#fillList(List)}填充
      * @param listener 回调接口
