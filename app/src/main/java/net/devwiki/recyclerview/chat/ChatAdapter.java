@@ -3,6 +3,7 @@ package net.devwiki.recyclerview.chat;
 import android.view.ViewGroup;
 
 import net.devwiki.recycler.BaseAdapter;
+import net.devwiki.recycler.listener.OnItemClickListener;
 import net.devwiki.recyclerview.R;
 
 /**
@@ -15,7 +16,7 @@ public class ChatAdapter extends BaseAdapter<ChatMsg, ChatHolder> {
     private static final int VIEW_IMAGE = 1;
 
     public ChatAdapter(OnItemClickListener<ChatHolder> listener) {
-        super(listener);
+        super(null, listener);
     }
 
     @Override

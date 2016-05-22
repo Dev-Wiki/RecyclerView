@@ -4,6 +4,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.devwiki.recycler.BaseAdapter;
+import net.devwiki.recycler.listener.OnItemClickListener;
 import net.devwiki.recyclerview.Person;
 import net.devwiki.recyclerview.R;
 
@@ -14,8 +15,7 @@ import net.devwiki.recyclerview.R;
 public class SingleAdapter extends BaseAdapter<Person, SingleHolder> {
 
     public SingleAdapter(SingleItemClickListener listener) {
-        super(listener);
-        super.listener = listener;
+        super(null, listener);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class SingleAdapter extends BaseAdapter<Person, SingleHolder> {
         });
     }
 
-    public interface SingleItemClickListener extends OnItemClickListener<SingleHolder>{
+    public interface SingleItemClickListener extends OnItemClickListener<SingleHolder> {
 
         void onNameClick(String name);
 

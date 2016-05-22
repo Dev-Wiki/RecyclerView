@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import net.devwiki.recycler.BaseAdapter;
 import net.devwiki.recycler.DividerItemDecoration;
+import net.devwiki.recycler.listener.OnItemClickListener;
 import net.devwiki.recyclerview.MockService;
 import net.devwiki.recyclerview.R;
 
@@ -31,7 +31,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private void initData() {
         mockService = new MockService();
-        chatAdapter = new ChatAdapter(new BaseAdapter.OnItemClickListener<ChatHolder>() {
+        chatAdapter = new ChatAdapter(new OnItemClickListener<ChatHolder>() {
             @Override
             public void onItemClick(ChatHolder holder) {
 
