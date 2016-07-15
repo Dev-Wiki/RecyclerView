@@ -1,9 +1,11 @@
 package net.devwiki.recyclerview.chat;
 
 import android.support.annotation.LayoutRes;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import net.devwiki.recycler.listener.OnHolderClickListener;
 import net.devwiki.recyclerview.R;
 
 /**
@@ -23,5 +25,22 @@ public class ImageHolder extends ChatHolder {
     public void setData(ChatMsg data) {
         super.setData(data);
         contentIv.setImageResource(((ImageMsg)data).getResId());
+    }
+
+    @Override
+    public void setOnHolderClickListener(OnImageHolderClickListener listener) {
+        contentIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+    }
+
+    public void setOnHolderClickListener() {
+    }
+
+    public interface OnImageHolderClickListener extends OnHolderClickListener {
+        void onContentClick();
     }
 }
