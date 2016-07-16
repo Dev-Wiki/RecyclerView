@@ -31,12 +31,7 @@ public class ChatActivity extends AppCompatActivity {
 
     private void initData() {
         mockService = new MockService();
-        chatAdapter = new ChatAdapter(new OnItemClickListener<ChatHolder>() {
-            @Override
-            public void onItemClick(ChatHolder holder) {
-
-            }
-        });
+        chatAdapter = new ChatAdapter(this);
         chatAdapter.fillList(mockService.getChatMsgList());
     }
 

@@ -12,7 +12,7 @@ import net.devwiki.recyclerview.R;
  * 一种View的Holder
  * Created by zyz on 2016/5/17.
  */
-public class SingleHolder extends BaseHolder<Person> {
+public class SingleHolder extends BaseHolder {
 
     TextView nameView;
     TextView ageView;
@@ -22,11 +22,5 @@ public class SingleHolder extends BaseHolder<Person> {
 
         nameView = getView(R.id.name_tv);
         ageView = getView(R.id.age_tv);
-    }
-
-    @Override
-    public void setData(Person data) {
-        nameView.setText(data.getName());
-        ageView.setText(String.valueOf(data.getAge()));
     }
 }

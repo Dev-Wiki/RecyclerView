@@ -11,7 +11,7 @@ import net.devwiki.recyclerview.R;
  * 聊天界面的ViewHolder
  * Created by zyz on 2016/5/18.
  */
-public class ChatHolder extends BaseHolder<ChatMsg> {
+public class ChatHolder extends BaseHolder {
 
     TextView senderNameTv;
     TextView createTimeTv;
@@ -21,11 +21,5 @@ public class ChatHolder extends BaseHolder<ChatMsg> {
 
         senderNameTv = getView(R.id.name_tv);
         createTimeTv = getView(R.id.create_time_tv);
-    }
-
-    @Override
-    public void setData(ChatMsg data) {
-        senderNameTv.setText(data.getSenderName());
-        createTimeTv.setText(data.getCreateTime());
     }
 }

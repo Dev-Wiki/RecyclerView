@@ -20,27 +20,4 @@ public class ImageHolder extends ChatHolder {
         super(parent, resId);
         contentIv = getView(R.id.content_iv);
     }
-
-    @Override
-    public void setData(ChatMsg data) {
-        super.setData(data);
-        contentIv.setImageResource(((ImageMsg)data).getResId());
-    }
-
-    @Override
-    public void setOnHolderClickListener(OnImageHolderClickListener listener) {
-        contentIv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-    }
-
-    public void setOnHolderClickListener() {
-    }
-
-    public interface OnImageHolderClickListener extends OnHolderClickListener {
-        void onContentClick();
-    }
 }

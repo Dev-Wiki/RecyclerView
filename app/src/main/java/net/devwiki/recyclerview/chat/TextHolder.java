@@ -19,10 +19,4 @@ public class TextHolder extends ChatHolder {
 
         contentTv = getView(R.id.content_tv);
     }
-
-    @Override
-    public void setData(ChatMsg data) {
-        super.setData(data);
-        contentTv.setText(((TextMsg)data).getText());
-    }
 }

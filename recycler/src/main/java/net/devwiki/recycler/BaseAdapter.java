@@ -1,112 +1,76 @@
 package net.devwiki.recycler;
 
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-
-import net.devwiki.recycler.listener.OnItemClickListener;
+import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * 基础的Adapter
- * Created by zyz on 2016/5/17.
+ *
+ * Created by DevWiki on 2016/7/13.
  */
-public abstract class BaseAdapter<M, H extends BaseHolder<M>> extends RecyclerView.Adapter<H> {
 
-    protected List<M> dataList;
-    protected OnItemClickListener<H> listener;
+public abstract class BaseAdapter<M, VH extends BaseHolder> extends AbsAdapter<M, VH> {
 
-    /**
-     * 设置数据,并设置点击回调接口
-     *
-     * @param list 数据集合
-     * @param listener 回调接口
-     */
-    public BaseAdapter(@Nullable List<M> list, @Nullable OnItemClickListener<H> listener) {
-        this.dataList = list;
-        if (this.dataList == null) {
-            this.dataList = new ArrayList<>();
-        }
+    private List<M> dataList;
 
-        this.listener = listener;
+    public BaseAdapter(Context context) {
+        super(context);
+        this.dataList = new ArrayList<>();
     }
 
-    @Override
-    public void onBindViewHolder(final H holder, int position) {
-        holder.setData(dataList.get(position));
-        if (listener != null) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    listener.onItemClick(holder);
-                }
-            });
-        }
-    }
-
-    @Override
-    public int getItemCount() {
-        return dataList.size();
+    public BaseAdapter(Context context, List<M> list) {
+        super(context);
+        this.dataList = new ArrayList<>();
+        this.dataList.addAll(list);
     }
 
     /**
-     * 填充数据,此方法会清空以前的数据
+     * 填充数据,此操作会清除原来的数据
      *
-     * @param list 需要显示的数据
+     * @param list 要填充的数据
+     * @return true:填充成功并调用刷新数据
      */
-    public void fillList(List<M> list) {
+    public boolean fillList(List<M> list) {
         dataList.clear();
-        dataList.addAll(list);
-    }
-
-    /**
-     * 更新数据
-     *
-     * @param holder item对应的holder
-     * @param data   item的数据
-     */
-    public void updateItem(H holder, M data) {
-        dataList.set(holder.getLayoutPosition(), data);
-    }
-
-    /**
-     * 获取一条数据
-     *
-     * @param holder item对应的holder
-     * @return 该item对应的数据
-     */
-    public M getItem(H holder) {
-        return dataList.get(holder.getLayoutPosition());
-    }
-
-    /**
-     * 获取一条数据
-     *
-     * @param position item的位置
-     * @return item对应的数据
-     */
-    public M getItem(int position) {
-        return dataList.get(position);
+        boolean result = dataList.addAll(list);
+        if (result) {
+            notifyDataSetChanged();
+        }
+        return result;
     }
 
     /**
      * 追加一条数据
      *
-     * @param data 追加的数据
+     * @param data 要追加的数据
+     * @return true:追加成功并刷新界面
      */
-    public void appendItem(M data) {
-        dataList.add(data);
+    public boolean appendItem(M data) {
+        boolean result = dataList.add(data);
+        if (result) {
+            if (getHeaderExtraViewCount() == 0) {
+                notifyItemInserted(dataList.size() - 1);
+            } else {
+                notifyItemInserted(dataList.size());
+            }
+        }
+        return result;
     }
 
     /**
-     * 追加一个集合数据
+     * 追加集合数据
      *
-     * @param list 要追加的数据集合
+     * @param list 要追加的集合数据
+     * @return 追加成功并刷新
      */
-    public void appendList(List<M> list) {
-        dataList.addAll(list);
+    public boolean appendList(List<M> list) {
+        boolean result = dataList.addAll(list);
+        if (result) {
+            notifyDataSetChanged();
+        }
+        return result;
     }
 
     /**
@@ -114,8 +78,13 @@ public abstract class BaseAdapter<M, H extends BaseHolder<M>> extends RecyclerVi
      *
      * @param data 要前置的数据
      */
-    public void preposeItem(M data) {
+    public void proposeItem(M data) {
         dataList.add(0, data);
+        if (getHeaderExtraViewCount() == 0) {
+            notifyItemInserted(0);
+        } else {
+            notifyItemInserted(getHeaderExtraViewCount());
+        }
     }
 
     /**
@@ -123,8 +92,78 @@ public abstract class BaseAdapter<M, H extends BaseHolder<M>> extends RecyclerVi
      *
      * @param list 要前置的数据集合
      */
-    public void preposeList(List<M> list) {
+    public void proposeList(List<M> list) {
         dataList.addAll(0, list);
+        notifyDataSetChanged();
     }
 
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public final int getItemViewType(int position) {
+        if (headerView != null && position == 0) {
+            return VIEW_TYPE_HEADER;
+        } else if (footerView != null && position == dataList.size() + getHeaderExtraViewCount()) {
+            return VIEW_TYPE_FOOTER;
+        } else {
+            return getCustomViewType(position);
+        }
+    }
+
+    public abstract int getCustomViewType(int position);
+
+    @Override
+    public int getItemCount() {
+        return dataList.size() + getExtraViewCount();
+    }
+
+    public M getItem(int position) {
+        if (headerView != null && position == 0
+                || position >= dataList.size() + getHeaderExtraViewCount()) {
+            return null;
+        }
+        return headerView == null ? dataList.get(position) : dataList.get(position - 1);
+    }
+
+    public M getItem(VH holder) {
+        return getItem(holder.getAdapterPosition());
+    }
+
+    public void updateItem(M data) {
+        int index = dataList.indexOf(data);
+        if (index < 0) {
+            return;
+        }
+        dataList.set(index, data);
+        if (headerView == null) {
+            notifyItemChanged(index);
+        } else {
+            notifyItemChanged(index + 1);
+        }
+    }
+
+    public void removeItem(int position) {
+        if (headerView == null) {
+            dataList.remove(position);
+        } else {
+            dataList.remove(position - 1);
+        }
+        notifyItemRemoved(position);
+    }
+
+    public void removeItem(M data) {
+        int index = dataList.indexOf(data);
+        if (index < 0) {
+            return;
+        }
+        dataList.remove(index);
+        if (headerView == null) {
+            notifyItemRemoved(index);
+        } else {
+            notifyItemRemoved(index + 1);
+        }
+    }
 }

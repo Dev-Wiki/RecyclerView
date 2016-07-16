@@ -1,5 +1,6 @@
 package net.devwiki.recyclerview.chat;
 
+import android.content.Context;
 import android.view.ViewGroup;
 
 import net.devwiki.recycler.BaseAdapter;
@@ -15,12 +16,12 @@ public class ChatAdapter extends BaseAdapter<ChatMsg, ChatHolder> {
     private static final int VIEW_TEXT = 0;
     private static final int VIEW_IMAGE = 1;
 
-    public ChatAdapter(OnItemClickListener<ChatHolder> listener) {
-        super(null, listener);
+    public ChatAdapter(Context context) {
+        super(context);
     }
 
     @Override
-    public ChatHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ChatHolder createCustomViewHolder(ViewGroup parent, int viewType) {
         ChatHolder holder;
         if (viewType == VIEW_IMAGE) {
             holder = new ImageHolder(parent, R.layout.item_msg_img_left);
@@ -31,7 +32,32 @@ public class ChatAdapter extends BaseAdapter<ChatMsg, ChatHolder> {
     }
 
     @Override
-    public int getItemViewType(int position) {
+    public void bindCustomViewHolder(ChatHolder holder, int position) {
+        ChatMsg data = getItem(position);
+        holder.senderNameTv.setText(data.getSenderName());
+        holder.createTimeTv.setText(data.getCreateTime());
+        switch (getCustomViewType(position)) {
+            case VIEW_TEXT:
+                setTextMsg((TextHolder) holder, data);
+                break;
+            case VIEW_IMAGE:
+                setImageMsg((ImageHolder) holder, data);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void setTextMsg(TextHolder holder, ChatMsg data) {
+        holder.contentTv.setText(((TextMsg)data).getText());
+    }
+
+    private void setImageMsg(ImageHolder holder, ChatMsg data) {
+        holder.contentIv.setImageResource(((ImageMsg)data).getResId());
+    }
+
+    @Override
+    public int getCustomViewType(int position) {
         if (getItem(position).getMsgType() == ChatMsg.TYPE_TEXT) {
             return VIEW_TEXT;
         } else {
