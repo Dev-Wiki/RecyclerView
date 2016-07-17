@@ -6,9 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * RecyclerView.Adapter的扩展,包含headerView/footerView等
  * Created by DevWiki on 2016/7/13.
@@ -44,7 +41,7 @@ public abstract class AbsAdapter<M, VH extends BaseHolder> extends RecyclerView.
     /**
      * 创建自定义的ViewHolder
      *
-     * @param parent 父类容器
+     * @param parent   父类容器
      * @param viewType view类型{@link #getItemViewType(int)}
      * @return ViewHolder
      */
@@ -65,7 +62,7 @@ public abstract class AbsAdapter<M, VH extends BaseHolder> extends RecyclerView.
     /**
      * 绑定自定义的ViewHolder
      *
-     * @param holder ViewHolder
+     * @param holder   ViewHolder
      * @param position 位置
      */
     public abstract void bindCustomViewHolder(VH holder, int position);
@@ -78,7 +75,7 @@ public abstract class AbsAdapter<M, VH extends BaseHolder> extends RecyclerView.
     public void addHeaderView(View headerView) {
         if (headerView == null) {
             Log.w(TAG, "add the header view is null");
-            return ;
+            return;
         }
         this.headerView = headerView;
         notifyDataSetChanged();
@@ -136,6 +133,7 @@ public abstract class AbsAdapter<M, VH extends BaseHolder> extends RecyclerView.
 
     /**
      * 获取顶部附加View数量,即HeaderView数量
+     *
      * @return 数量
      */
     public int getHeaderExtraViewCount() {
@@ -144,7 +142,8 @@ public abstract class AbsAdapter<M, VH extends BaseHolder> extends RecyclerView.
 
     /**
      * 获取底部附加View数量,即FooterView数量
-     * @return 数量,0或1
+     *
+     * @return 数量, 0或1
      */
     public int getFooterExtraViewCount() {
         return footerView == null ? 0 : 1;

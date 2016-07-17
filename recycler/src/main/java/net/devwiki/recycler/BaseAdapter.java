@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * 基础的Adapter
- *
+ * <p>
  * Created by DevWiki on 2016/7/13.
  */
 
@@ -113,6 +113,12 @@ public abstract class BaseAdapter<M, VH extends BaseHolder> extends AbsAdapter<M
         }
     }
 
+    /**
+     * 获取自定义View的类型
+     *
+     * @param position 位置
+     * @return View的类型
+     */
     public abstract int getCustomViewType(int position);
 
     @Override
@@ -120,6 +126,12 @@ public abstract class BaseAdapter<M, VH extends BaseHolder> extends AbsAdapter<M
         return dataList.size() + getExtraViewCount();
     }
 
+    /**
+     * 根据位置获取一条数据
+     *
+     * @param position View的位置
+     * @return 数据
+     */
     public M getItem(int position) {
         if (headerView != null && position == 0
                 || position >= dataList.size() + getHeaderExtraViewCount()) {
@@ -128,6 +140,12 @@ public abstract class BaseAdapter<M, VH extends BaseHolder> extends AbsAdapter<M
         return headerView == null ? dataList.get(position) : dataList.get(position - 1);
     }
 
+    /**
+     * 根据ViewHolder获取数据
+     *
+     * @param holder ViewHolder
+     * @return 数据
+     */
     public M getItem(VH holder) {
         return getItem(holder.getAdapterPosition());
     }
@@ -145,6 +163,11 @@ public abstract class BaseAdapter<M, VH extends BaseHolder> extends AbsAdapter<M
         }
     }
 
+    /**
+     * 移除一条数据
+     *
+     * @param position 位置
+     */
     public void removeItem(int position) {
         if (headerView == null) {
             dataList.remove(position);
@@ -154,6 +177,11 @@ public abstract class BaseAdapter<M, VH extends BaseHolder> extends AbsAdapter<M
         notifyItemRemoved(position);
     }
 
+    /**
+     * 移除一条数据
+     *
+     * @param data 要移除的数据
+     */
     public void removeItem(M data) {
         int index = dataList.indexOf(data);
         if (index < 0) {

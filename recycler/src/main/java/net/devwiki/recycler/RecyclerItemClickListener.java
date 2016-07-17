@@ -1,13 +1,13 @@
 package net.devwiki.recycler;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
 /**
- * Created by Asia on 2016/7/16.
+ * 点击事件
+ * Created by DevWiki on 2016/7/16.
  */
 
 public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListener {
@@ -16,8 +16,20 @@ public class RecyclerItemClickListener implements RecyclerView.OnItemTouchListen
     private GestureDetector gestureDetector;
 
     public interface OnItemClickListener {
+        /**
+         * 点击时回调
+         *
+         * @param view     点击的View
+         * @param position 点击的位置
+         */
         void onItemClick(View view, int position);
 
+        /**
+         * 长点击时回调
+         *
+         * @param view     点击的View
+         * @param position 点击的位置
+         */
         void onItemLongClick(View view, int position);
     }
 
