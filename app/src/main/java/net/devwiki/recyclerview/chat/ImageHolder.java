@@ -1,11 +1,9 @@
 package net.devwiki.recyclerview.chat;
 
 import android.support.annotation.LayoutRes;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import net.devwiki.recycler.listener.OnHolderClickListener;
 import net.devwiki.recyclerview.R;
 
 /**

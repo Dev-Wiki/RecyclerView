@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.ViewGroup;
 
 import net.devwiki.recycler.BaseAdapter;
-import net.devwiki.recycler.listener.OnItemClickListener;
 import net.devwiki.recyclerview.R;
 
 /**

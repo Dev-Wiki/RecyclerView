@@ -7,8 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
-import net.devwiki.recycler.DividerItemDecoration;
-import net.devwiki.recycler.listener.OnItemClickListener;
+import net.devwiki.recycler.DividerDecoration;
 import net.devwiki.recyclerview.MockService;
 import net.devwiki.recyclerview.R;
 
@@ -47,7 +46,7 @@ public class ChatActivity extends AppCompatActivity {
 
         chatRv = (RecyclerView) findViewById(R.id.chat_rv);
         chatRv.setLayoutManager(new LinearLayoutManager(this));
-        chatRv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+        chatRv.addItemDecoration(new DividerDecoration(this, DividerDecoration.VERTICAL_LIST));
         chatRv.setAdapter(chatAdapter);
     }
 
