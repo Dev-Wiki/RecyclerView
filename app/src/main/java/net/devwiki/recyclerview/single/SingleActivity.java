@@ -7,10 +7,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import net.devwiki.recycler.DividerDecoration;
+import net.devwiki.recycler.RecyclerItemClickListener;
 import net.devwiki.recyclerview.MockService;
+import net.devwiki.recyclerview.Person;
 import net.devwiki.recyclerview.R;
 
 public class SingleActivity extends AppCompatActivity {
@@ -41,22 +45,21 @@ public class SingleActivity extends AppCompatActivity {
         View view = LayoutInflater.from(this).inflate(R.layout.item_single_header, null, false);
         singleAdapter.addHeaderView(view);
 
-        ItemTouchHelper touchHelper = new ItemTouchHelper(new ItemTouchHelper.Callback() {
-            @Override
-            public int getMovementFlags(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder) {
-                return 0;
-            }
+        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(recyclerView,
+                new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Person person = singleAdapter.getItem(position);
+                        Toast.makeText(SingleActivity.this, "click:" + person,
+                                Toast.LENGTH_SHORT).show();
+                    }
 
-            @Override
-            public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
-
-            }
-        });
-        touchHelper.attachToRecyclerView(recyclerView);
+                    @Override
+                    public void onItemLongClick(View view, int position) {
+                        Person person = singleAdapter.getItem(position);
+                        Toast.makeText(SingleActivity.this, "Long Click:" + person,
+                                Toast.LENGTH_SHORT).show();
+                    }
+                }));
     }
 }
