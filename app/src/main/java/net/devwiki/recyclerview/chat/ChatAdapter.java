@@ -12,8 +12,11 @@ import net.devwiki.recyclerview.R;
  */
 public class ChatAdapter extends BaseAdapter<ChatMsg, ChatHolder> {
 
-    private static final int VIEW_TEXT = 0;
-    private static final int VIEW_IMAGE = 1;
+    private static final int VIEW_TEXT_LEFT = 0;
+    private static final int VIEW_TEXT_RIGHT = 1;
+    private static final int VIEW_IMAGE_LEFT = 2;
+    private static final int VIEW_IMAGE_RIGHT = 3;
+
 
     public ChatAdapter(Context context) {
         super(context);
@@ -21,11 +24,20 @@ public class ChatAdapter extends BaseAdapter<ChatMsg, ChatHolder> {
 
     @Override
     public ChatHolder createCustomViewHolder(ViewGroup parent, int viewType) {
-        ChatHolder holder;
-        if (viewType == VIEW_IMAGE) {
-            holder = new ImageHolder(parent, R.layout.item_msg_img_left);
-        } else {
-            holder = new TextHolder(parent, R.layout.item_msg_text_left);
+        ChatHolder holder = null;
+        switch (viewType) {
+            case VIEW_TEXT_LEFT:
+                holder = new TextHolder(parent, R.layout.item_msg_text_left);
+                break;
+            case VIEW_TEXT_RIGHT:
+                holder = new TextHolder(parent, R.layout.item_msg_text_right);
+                break;
+            case VIEW_IMAGE_LEFT:
+                holder = new ImageHolder(parent, R.layout.item_msg_img_left);
+                break;
+            case VIEW_IMAGE_RIGHT:
+                holder = new ImageHolder(parent, R.layout.item_msg_img_right);
+                break;
         }
         return holder;
     }
@@ -36,10 +48,12 @@ public class ChatAdapter extends BaseAdapter<ChatMsg, ChatHolder> {
         holder.senderNameTv.setText(data.getSenderName());
         holder.createTimeTv.setText(data.getCreateTime());
         switch (getCustomViewType(position)) {
-            case VIEW_TEXT:
+            case VIEW_TEXT_LEFT:
+            case VIEW_TEXT_RIGHT:
                 setTextMsg((TextHolder) holder, data);
                 break;
-            case VIEW_IMAGE:
+            case VIEW_IMAGE_LEFT:
+            case VIEW_IMAGE_RIGHT:
                 setImageMsg((ImageHolder) holder, data);
                 break;
             default:
@@ -58,9 +72,17 @@ public class ChatAdapter extends BaseAdapter<ChatMsg, ChatHolder> {
     @Override
     public int getCustomViewType(int position) {
         if (getItem(position).getMsgType() == ChatMsg.TYPE_TEXT) {
-            return VIEW_TEXT;
+            if (position%2 == 0) {
+                return VIEW_TEXT_LEFT;
+            } else {
+                return VIEW_TEXT_RIGHT;
+            }
         } else {
-            return VIEW_IMAGE;
+            if (position%3 == 0) {
+                return VIEW_IMAGE_LEFT;
+            } else {
+                return VIEW_IMAGE_RIGHT;
+            }
         }
     }
 }

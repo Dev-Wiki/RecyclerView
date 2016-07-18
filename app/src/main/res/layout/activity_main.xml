@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin">
 
     <Button
-        android:id="@+id/single_tv"
+        android:id="@+id/single_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -18,7 +18,16 @@
         android:onClick="onClick"/>
 
     <Button
-        android:id="@+id/multi_tv"
+        android:id="@+id/chat_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Chat"
+        android:textSize="20sp"
+        android:onClick="onClick"/>
+
+    <Button
+        android:id="@+id/multi_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
