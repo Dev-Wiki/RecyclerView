@@ -23,5 +23,4 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':recycler')
     compile 'com.android.support:appcompat-v7:23.4.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha1'
 }
