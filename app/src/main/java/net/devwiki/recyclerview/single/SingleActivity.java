@@ -1,23 +1,18 @@
 package net.devwiki.recyclerview.single;
 
 import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Toast;
 
+import net.devwiki.log.DevLog;
 import net.devwiki.recycler.DividerDecoration;
 import net.devwiki.recycler.ItemClickSupport;
-import net.devwiki.recycler.RecyclerItemClickListener;
 import net.devwiki.recyclerview.MockService;
-import net.devwiki.recyclerview.Person;
 import net.devwiki.recyclerview.R;
-import net.devwiki.util.log.DevLog;
 
 public class SingleActivity extends AppCompatActivity {
 
