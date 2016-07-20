@@ -12,10 +12,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import net.devwiki.recycler.DividerDecoration;
+import net.devwiki.recycler.ItemClickSupport;
 import net.devwiki.recycler.RecyclerItemClickListener;
 import net.devwiki.recyclerview.MockService;
 import net.devwiki.recyclerview.Person;
 import net.devwiki.recyclerview.R;
+import net.devwiki.util.log.DevLog;
 
 public class SingleActivity extends AppCompatActivity {
 
@@ -45,21 +47,19 @@ public class SingleActivity extends AppCompatActivity {
         View view = LayoutInflater.from(this).inflate(R.layout.item_single_header, null, false);
         singleAdapter.addHeaderView(view);
 
-        recyclerView.addOnItemTouchListener(new RecyclerItemClickListener(recyclerView,
-                new RecyclerItemClickListener.OnItemClickListener() {
+        ItemClickSupport.addTo(recyclerView)
+                .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
                     @Override
-                    public void onItemClick(View view, int position) {
-                        Person person = singleAdapter.getItem(position);
-                        Toast.makeText(SingleActivity.this, "click:" + person,
-                                Toast.LENGTH_SHORT).show();
+                    public void onItemClicked(RecyclerView recyclerView, int position, View v) {
+                        DevLog.d("click position:" + position);
                     }
-
+                })
+                .setOnItemLongClickListener(new ItemClickSupport.OnItemLongClickListener() {
                     @Override
-                    public void onItemLongClick(View view, int position) {
-                        Person person = singleAdapter.getItem(position);
-                        Toast.makeText(SingleActivity.this, "Long Click:" + person,
-                                Toast.LENGTH_SHORT).show();
+                    public boolean onItemLongClicked(RecyclerView recyclerView, int position, View v) {
+                        DevLog.d("long click position:" + position);
+                        return false;
                     }
-                }));
+                });
     }
 }
