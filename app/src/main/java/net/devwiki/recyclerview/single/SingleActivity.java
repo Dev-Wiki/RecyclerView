@@ -42,18 +42,28 @@ public class SingleActivity extends AppCompatActivity {
         View view = LayoutInflater.from(this).inflate(R.layout.item_single_header, null, false);
         singleAdapter.addHeaderView(view);
 
-        ItemClickSupport.addTo(recyclerView)
-                .setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+        SingleItemClickSupport.addTo(recyclerView)
+                .setOnItemClickListener(new SingleItemClickSupport.OnItemClickListener() {
                     @Override
                     public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                        DevLog.d("click position:" + position);
+                        DevLog.i("item click");
+                    }
+
+                    @Override
+                    public void onNameClicked(RecyclerView recyclerView, int position, View view) {
+                        DevLog.i("name click");
+                    }
+
+                    @Override
+                    public void onAgeClicked(RecyclerView recyclerView, int position, View view) {
+                        DevLog.i("age click");
                     }
                 })
-                .setOnItemLongClickListener(new ItemClickSupport.OnItemLongClickListener() {
+                .setOnItemLongClickListener(new SingleItemClickSupport.OnItemLongClickListener() {
                     @Override
                     public boolean onItemLongClicked(RecyclerView recyclerView, int position, View v) {
-                        DevLog.d("long click position:" + position);
-                        return false;
+                        DevLog.i("long click");
+                        return true;
                     }
                 });
     }
