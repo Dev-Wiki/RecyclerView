@@ -102,8 +102,6 @@ public class SingleItemClickSupport {
 
     public interface OnItemClickListener {
 
-        void onItemClicked(RecyclerView recyclerView, int position, View v);
-
         void onNameClicked(RecyclerView recyclerView, int position, View view);
 
         void onAgeClicked(RecyclerView recyclerView, int position, View view);

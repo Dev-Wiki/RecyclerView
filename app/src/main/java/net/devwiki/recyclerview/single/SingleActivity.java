@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Toast;
 
 import net.devwiki.log.DevLog;
 import net.devwiki.recycler.DividerDecoration;
@@ -20,6 +21,10 @@ public class SingleActivity extends AppCompatActivity {
     private LinearLayoutManager layoutManager;
     private SingleAdapter singleAdapter;
     private MockService mockService;
+
+    private SingleItemClickListener touchListener;
+    private SingleAdapter.OnSingleItemClickListener adapterListener;
+    private SingleItemClickSupport supportListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,28 +47,75 @@ public class SingleActivity extends AppCompatActivity {
         View view = LayoutInflater.from(this).inflate(R.layout.item_single_header, null, false);
         singleAdapter.addHeaderView(view);
 
-        SingleItemClickSupport.addTo(recyclerView)
-                .setOnItemClickListener(new SingleItemClickSupport.OnItemClickListener() {
+//        setClickListenerWithAdapter();
+//        setClickListenerWithSupport();
+        setClickListenerWithTouch();
+    }
+
+    private void setClickListenerWithTouch() {
+        touchListener = new SingleItemClickListener(recyclerView,
+                new SingleItemClickListener.OnItemClickListener() {
                     @Override
-                    public void onItemClicked(RecyclerView recyclerView, int position, View v) {
-                        DevLog.i("item click");
+                    public void onNameClick(View view, int position) {
+                        DevLog.i("click name:" + position);
+                        Toast.makeText(SingleActivity.this, "click name:" + position, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
+                    public void onAgeClick(View view, int position) {
+                        DevLog.i("click age:" + position);
+                        Toast.makeText(SingleActivity.this, "click age:" + position, Toast.LENGTH_SHORT).show();
+                    }
+
+                    @Override
+                    public void onItemLongClick(View view, int position) {
+                        DevLog.i("long click:" + position);
+                        Toast.makeText(SingleActivity.this, "long click:" + position, Toast.LENGTH_SHORT).show();
+                    }
+                });
+        singleAdapter.setClickListener(null);
+        SingleItemClickSupport.removeFrom(recyclerView);
+        recyclerView.addOnItemTouchListener(touchListener);
+    }
+
+    private void setClickListenerWithAdapter() {
+        if (touchListener != null) {
+            recyclerView.removeOnItemTouchListener(touchListener);
+        }
+        SingleItemClickSupport.removeFrom(recyclerView);
+        singleAdapter.setClickListener(new SingleAdapter.OnSingleItemClickListener() {
+            @Override
+            public void onNameClick(int position) {
+                DevLog.i("click name:" + position);
+                Toast.makeText(SingleActivity.this, "click name:" + position, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onAgeClick(int position) {
+                DevLog.i("click age:" + position);
+                Toast.makeText(SingleActivity.this, "click name:" + position, Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void setClickListenerWithSupport() {
+        if (touchListener != null) {
+            recyclerView.removeOnItemTouchListener(touchListener);
+        }
+        singleAdapter.setClickListener(null);
+        SingleItemClickSupport.addTo(recyclerView)
+                .setOnItemClickListener(new SingleItemClickSupport.OnItemClickListener() {
+
+                    @Override
                     public void onNameClicked(RecyclerView recyclerView, int position, View view) {
-                        DevLog.i("name click");
+                        DevLog.i("name click:" + position);
+                        Toast.makeText(SingleActivity.this, "click name:" + position, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onAgeClicked(RecyclerView recyclerView, int position, View view) {
-                        DevLog.i("age click");
-                    }
-                })
-                .setOnItemLongClickListener(new SingleItemClickSupport.OnItemLongClickListener() {
-                    @Override
-                    public boolean onItemLongClicked(RecyclerView recyclerView, int position, View v) {
-                        DevLog.i("long click");
-                        return true;
+                        DevLog.i("age click:" + position);
+                        Toast.makeText(SingleActivity.this, "click name:" + position, Toast.LENGTH_SHORT).show();
                     }
                 });
     }
