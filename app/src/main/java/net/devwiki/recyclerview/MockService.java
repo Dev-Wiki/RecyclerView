@@ -26,7 +26,7 @@ public class MockService {
     public List<ChatMsg> getChatMsgList() {
         List<ChatMsg> list = new ArrayList<>();
         Random random = new Random();
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 100; i++) {
             int value = random.nextInt(10);
             if (value < 4) {
                 TextMsg textMsg = new TextMsg();
@@ -39,7 +39,7 @@ public class MockService {
                 ImageMsg imageMsg = new ImageMsg();
                 imageMsg.setSenderName("Mary");
                 imageMsg.setMsgType(ChatMsg.TYPE_IMAGE);
-                imageMsg.setResId(drawableRes[i/2]);
+                imageMsg.setResId(drawableRes[i%3]);
                 imageMsg.setCreateTime(getShowTime(System.currentTimeMillis() + i*1000));
                 list.add(imageMsg);
             }

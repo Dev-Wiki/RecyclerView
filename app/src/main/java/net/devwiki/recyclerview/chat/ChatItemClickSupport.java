@@ -1,16 +1,18 @@
-package net.devwiki.recyclerview.single;
+package net.devwiki.recyclerview.chat;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import net.devwiki.log.DevLog;
 import net.devwiki.recyclerview.R;
+import net.devwiki.recyclerview.single.SingleHolder;
 
 /**
  * SingleItem的点击事件
  * Created by zyz on 2016/7/20.
  */
 
-public class SingleItemClickSupport {
+public class ChatItemClickSupport {
     private final RecyclerView mRecyclerView;
     private OnItemClickListener mOnItemClickListener;
     private OnItemLongClickListener mOnItemLongClickListener;
@@ -20,10 +22,15 @@ public class SingleItemClickSupport {
             if (mOnItemClickListener != null) {
                 RecyclerView.ViewHolder holder = mRecyclerView.findContainingViewHolder(v);
                 if (holder != null) {
+                    int position = holder.getAdapterPosition();
                     if (v.getId() == R.id.name_tv) {
-                        mOnItemClickListener.onNameClicked(mRecyclerView, holder.getAdapterPosition(), v);
+                        mOnItemClickListener.onNameClick(mRecyclerView, position, v);
+                    }else if (v.getId() == R.id.content_tv){
+                        mOnItemClickListener.onTextClick(mRecyclerView, position, v);
+                    }else if (v.getId() == R.id.content_iv) {
+                        mOnItemClickListener.onImageClick(mRecyclerView, position, v);
                     } else {
-                        mOnItemClickListener.onAgeClicked(mRecyclerView, holder.getAdapterPosition(), v);
+                        DevLog.d("holder is null.....");
                     }
                 }
             }
@@ -46,10 +53,17 @@ public class SingleItemClickSupport {
             if (mOnItemClickListener != null) {
                 view.setOnClickListener(mOnClickListener);
                 RecyclerView.ViewHolder viewHolder = mRecyclerView.getChildViewHolder(view);
-                if (viewHolder instanceof SingleHolder) {
-                    SingleHolder singleHolder = (SingleHolder) viewHolder;
-                    singleHolder.nameView.setOnClickListener(mOnClickListener);
-                    singleHolder.ageView.setOnClickListener(mOnClickListener);
+                if (viewHolder instanceof ChatHolder) {
+                    ChatHolder chatHolder = (ChatHolder) viewHolder;
+                    chatHolder.senderNameTv.setOnClickListener(mOnClickListener);
+                    if (chatHolder instanceof TextHolder) {
+                        TextHolder textHolder = (TextHolder) chatHolder;
+                        textHolder.contentTv.setOnClickListener(mOnClickListener);
+                    }
+                    if (chatHolder instanceof ImageHolder) {
+                        ImageHolder imageHolder = (ImageHolder) chatHolder;
+                        imageHolder.contentIv.setOnClickListener(mOnClickListener);
+                    }
                 }
             }
             if (mOnItemLongClickListener != null) {
@@ -63,34 +77,34 @@ public class SingleItemClickSupport {
         }
     };
 
-    private SingleItemClickSupport(RecyclerView recyclerView) {
+    private ChatItemClickSupport(RecyclerView recyclerView) {
         mRecyclerView = recyclerView;
         mRecyclerView.setTag(net.devwiki.recycler.R.id.item_click_support, this);
         mRecyclerView.addOnChildAttachStateChangeListener(mAttachListener);
     }
 
-    public static SingleItemClickSupport addTo(RecyclerView view) {
-        SingleItemClickSupport support = (SingleItemClickSupport) view.getTag(net.devwiki.recycler.R.id.item_click_support);
+    public static ChatItemClickSupport addTo(RecyclerView view) {
+        ChatItemClickSupport support = (ChatItemClickSupport) view.getTag(net.devwiki.recycler.R.id.item_click_support);
         if (support == null) {
-            support = new SingleItemClickSupport(view);
+            support = new ChatItemClickSupport(view);
         }
         return support;
     }
 
-    public static SingleItemClickSupport removeFrom(RecyclerView view) {
-        SingleItemClickSupport support = (SingleItemClickSupport) view.getTag(net.devwiki.recycler.R.id.item_click_support);
+    public static ChatItemClickSupport removeFrom(RecyclerView view) {
+        ChatItemClickSupport support = (ChatItemClickSupport) view.getTag(net.devwiki.recycler.R.id.item_click_support);
         if (support != null) {
             support.detach(view);
         }
         return support;
     }
 
-    public SingleItemClickSupport setOnItemClickListener(OnItemClickListener listener) {
+    public ChatItemClickSupport setOnItemClickListener(OnItemClickListener listener) {
         mOnItemClickListener = listener;
         return this;
     }
 
-    public SingleItemClickSupport setOnItemLongClickListener(OnItemLongClickListener listener) {
+    public ChatItemClickSupport setOnItemLongClickListener(OnItemLongClickListener listener) {
         mOnItemLongClickListener = listener;
         return this;
     }
@@ -102,11 +116,11 @@ public class SingleItemClickSupport {
 
     public interface OnItemClickListener {
 
-        void onItemClicked(RecyclerView recyclerView, int position, View v);
+        void onNameClick(RecyclerView recyclerView, int position, View view);
 
-        void onNameClicked(RecyclerView recyclerView, int position, View view);
+        void onTextClick(RecyclerView recyclerView, int position, View view);
 
-        void onAgeClicked(RecyclerView recyclerView, int position, View view);
+        void onImageClick(RecyclerView recyclerView, int position, View view);
     }
 
     public interface OnItemLongClickListener {
