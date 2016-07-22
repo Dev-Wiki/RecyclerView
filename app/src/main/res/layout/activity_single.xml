@@ -12,7 +12,33 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/single_rv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/listener_rg">
     </android.support.v7.widget.RecyclerView>
+
+    <RadioGroup
+        android:id="@+id/listener_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/adapter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Adapter"/>
+
+        <RadioButton
+            android:id="@+id/touch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Touch"/>
+
+        <RadioButton
+            android:id="@+id/support"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Support"/>
+    </RadioGroup>
 
 </RelativeLayout>
