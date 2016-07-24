@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import net.devwiki.log.DevLog;
 import net.devwiki.recycler.DividerDecoration;
-import net.devwiki.recycler.ItemClickSupport;
 import net.devwiki.recyclerview.MockService;
 import net.devwiki.recyclerview.R;
 
@@ -47,24 +46,24 @@ public class SingleActivity extends AppCompatActivity {
         View view = LayoutInflater.from(this).inflate(R.layout.item_single_header, null, false);
         singleAdapter.addHeaderView(view);
 
-//        setClickListenerWithAdapter();
-//        setClickListenerWithSupport();
-        setClickListenerWithTouch();
+        String type = getIntent().getStringExtra("type");
+        if ("adapter".equals(type)) {
+            setClickListenerWithAdapter();
+        } else if ("touch".equals(type)) {
+            setClickListenerWithTouch();
+        } else {
+            setClickListenerWithSupport();
+        }
     }
 
     private void setClickListenerWithTouch() {
-        touchListener = new SingleItemClickListener(recyclerView,
+        recyclerView.addOnItemTouchListener(new SingleItemClickListener(recyclerView,
                 new SingleItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onNameClick(View view, int position) {
-                        DevLog.i("click name:" + position);
-                        Toast.makeText(SingleActivity.this, "click name:" + position, Toast.LENGTH_SHORT).show();
-                    }
 
                     @Override
-                    public void onAgeClick(View view, int position) {
-                        DevLog.i("click age:" + position);
-                        Toast.makeText(SingleActivity.this, "click age:" + position, Toast.LENGTH_SHORT).show();
+                    public void onItemClick(View view, int position) {
+                        DevLog.i("click name:" + position);
+                        Toast.makeText(SingleActivity.this, "click:" + position, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
@@ -72,17 +71,10 @@ public class SingleActivity extends AppCompatActivity {
                         DevLog.i("long click:" + position);
                         Toast.makeText(SingleActivity.this, "long click:" + position, Toast.LENGTH_SHORT).show();
                     }
-                });
-        singleAdapter.setClickListener(null);
-        SingleItemClickSupport.removeFrom(recyclerView);
-        recyclerView.addOnItemTouchListener(touchListener);
+                }));
     }
 
     private void setClickListenerWithAdapter() {
-        if (touchListener != null) {
-            recyclerView.removeOnItemTouchListener(touchListener);
-        }
-        SingleItemClickSupport.removeFrom(recyclerView);
         singleAdapter.setClickListener(new SingleAdapter.OnSingleItemClickListener() {
             @Override
             public void onNameClick(int position) {
@@ -99,10 +91,6 @@ public class SingleActivity extends AppCompatActivity {
     }
 
     private void setClickListenerWithSupport() {
-        if (touchListener != null) {
-            recyclerView.removeOnItemTouchListener(touchListener);
-        }
-        singleAdapter.setClickListener(null);
         SingleItemClickSupport.addTo(recyclerView)
                 .setOnItemClickListener(new SingleItemClickSupport.OnItemClickListener() {
 

@@ -21,13 +21,26 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View view) {
-        if (view.getId() == R.id.single_btn) {
-            startActivity(new Intent(this, SingleActivity.class));
-        } else if (view.getId() == R.id.chat_btn) {
-            startActivity(new Intent(this, ChatActivity.class));
-        } else if (view.getId() == R.id.multi_btn){
-            startActivity(new Intent(this, MultiActivity.class));
-            Log.e(TAG, "onClick: not case");
+        Intent intent = new Intent(this, SingleActivity.class);
+        switch (view.getId()) {
+            case R.id.single_adapter:
+                intent.putExtra("type", "adapter");
+                startActivity(intent);
+                break;
+            case R.id.single_touch:
+                intent.putExtra("type", "touch");
+                startActivity(intent);
+                break;
+            case R.id.single_support:
+                intent.putExtra("type", "support");
+                startActivity(intent);
+                break;
+            case R.id.chat_btn:
+                startActivity(new Intent(this, ChatActivity.class));
+                break;
+            case R.id.multi_btn:
+                startActivity(new Intent(this, MultiActivity.class));
+                break;
         }
     }
 }

@@ -8,14 +8,50 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
 
-    <Button
-        android:id="@+id/single_btn"
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="Three Click Listener With Single"
+        android:gravity="center"
+        android:textSize="18sp"/>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Single"
-        android:textSize="20sp"
-        android:onClick="onClick"/>
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/single_adapter"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Adapter"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:onClick="onClick"/>
+
+        <Button
+            android:id="@+id/single_touch"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Touch"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:onClick="onClick"/>
+
+        <Button
+            android:id="@+id/single_support"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Support"
+            android:textAllCaps="false"
+            android:textSize="20sp"
+            android:onClick="onClick"/>
+    </LinearLayout>
 
     <Button
         android:id="@+id/chat_btn"
@@ -23,6 +59,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Chat"
+        android:textAllCaps="false"
         android:textSize="20sp"
         android:onClick="onClick"/>
 
@@ -32,6 +69,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Multi"
+        android:textAllCaps="false"
         android:textSize="20sp"
         android:onClick="onClick"/>
 </LinearLayout>
