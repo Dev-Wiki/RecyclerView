@@ -62,14 +62,14 @@ public class SingleActivity extends AppCompatActivity {
 
                     @Override
                     public void onItemClick(View view, int position) {
-                        DevLog.i("click name:" + position);
-                        Toast.makeText(SingleActivity.this, "click:" + position, Toast.LENGTH_SHORT).show();
+                        DevLog.i("touch click name:" + position);
+                        Toast.makeText(SingleActivity.this, "touch click:" + position, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onItemLongClick(View view, int position) {
-                        DevLog.i("long click:" + position);
-                        Toast.makeText(SingleActivity.this, "long click:" + position, Toast.LENGTH_SHORT).show();
+                        DevLog.i("touch long click:" + position);
+                        Toast.makeText(SingleActivity.this, "touch long click:" + position, Toast.LENGTH_SHORT).show();
                     }
                 }));
     }
@@ -78,14 +78,14 @@ public class SingleActivity extends AppCompatActivity {
         singleAdapter.setClickListener(new SingleAdapter.OnSingleItemClickListener() {
             @Override
             public void onNameClick(int position) {
-                DevLog.i("click name:" + position);
-                Toast.makeText(SingleActivity.this, "click name:" + position, Toast.LENGTH_SHORT).show();
+                DevLog.i("adapter click name:" + position);
+                Toast.makeText(SingleActivity.this, "adapter click name:" + position, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onAgeClick(int position) {
-                DevLog.i("click age:" + position);
-                Toast.makeText(SingleActivity.this, "click name:" + position, Toast.LENGTH_SHORT).show();
+                DevLog.i("adapter click age:" + position);
+                Toast.makeText(SingleActivity.this, "adapter click name:" + position, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -96,14 +96,14 @@ public class SingleActivity extends AppCompatActivity {
 
                     @Override
                     public void onNameClicked(RecyclerView recyclerView, int position, View view) {
-                        DevLog.i("name click:" + position);
-                        Toast.makeText(SingleActivity.this, "click name:" + position, Toast.LENGTH_SHORT).show();
+                        DevLog.i("support name click:" + position);
+                        Toast.makeText(SingleActivity.this, "support click name:" + position, Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onAgeClicked(RecyclerView recyclerView, int position, View view) {
-                        DevLog.i("age click:" + position);
-                        Toast.makeText(SingleActivity.this, "click name:" + position, Toast.LENGTH_SHORT).show();
+                        DevLog.i("support age click:" + position);
+                        Toast.makeText(SingleActivity.this, "support click name:" + position, Toast.LENGTH_SHORT).show();
                     }
                 });
     }

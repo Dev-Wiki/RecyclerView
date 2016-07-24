@@ -4,7 +4,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 /**
- * Created by zyz on 2016/7/20.
+ * 点击事件支持类
+ * Created by DevWiki on 2016/7/20.
  */
 
 public class ItemClickSupport {
