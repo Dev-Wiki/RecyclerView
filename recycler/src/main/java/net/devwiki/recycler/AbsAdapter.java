@@ -42,7 +42,7 @@ public abstract class AbsAdapter<M, VH extends BaseHolder> extends RecyclerView.
      * 创建自定义的ViewHolder
      *
      * @param parent   父类容器
-     * @param viewType view类型{@link #getItemViewType(int)}
+     * @param viewType view类型
      * @return ViewHolder
      */
     public abstract VH createCustomViewHolder(ViewGroup parent, int viewType);
