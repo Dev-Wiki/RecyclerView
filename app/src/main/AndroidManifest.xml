@@ -19,6 +19,8 @@
         <activity android:name=".chat.ChatActivity"/>
         <activity android:name=".multi.MultiActivity">
         </activity>
+        <activity android:name=".footer.FooterActivity">
+        </activity>
     </application>
 
 </manifest>
