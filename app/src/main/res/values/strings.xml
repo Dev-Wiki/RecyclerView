@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">RecyclerView</string>
+    <string name="adapter">Adapter</string>
+    <string name="touch">Touch</string>
+    <string name="support">Support</string>
+    <string name="hint_click_type">Three Click Listener With Single</string>
+    <string name="chat">Chat</string>
+    <string name="multi">Multi</string>
 </resources>

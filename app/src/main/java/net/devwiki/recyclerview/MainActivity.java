@@ -1,14 +1,16 @@
 package net.devwiki.recyclerview;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import net.devwiki.recyclerview.chat.ChatActivity;
 import net.devwiki.recyclerview.multi.MultiActivity;
 import net.devwiki.recyclerview.single.SingleActivity;
+
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,8 +20,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
     }
 
+    @OnClick({R.id.single_adapter, R.id.single_touch, R.id.single_support, R.id.chat_btn, R.id.multi_btn})
     public void onClick(View view) {
         Intent intent = new Intent(this, SingleActivity.class);
         switch (view.getId()) {
