@@ -21,6 +21,8 @@
         </activity>
         <activity android:name=".footer.FooterActivity">
         </activity>
+        <activity android:name=".scroll.ScrollActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -6,4 +6,8 @@
     <string name="hint_click_type">Three Click Listener With Single</string>
     <string name="chat">Chat</string>
     <string name="multi">Multi</string>
+    <string name="scroll">Scroll</string>
+    <string name="scroll_footer_1">ScrollFooter1</string>
+    <string name="scroll_footer_2">ScrollFooter2</string>
+    <string name="scroll_footer_3">ScrollFooter3</string>
 </resources>

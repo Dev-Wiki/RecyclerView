@@ -44,5 +44,10 @@
             android:id="@+id/multi_btn"
             android:text="@string/multi"
             style="@style/style_vertical_button"/>
+
+        <Button
+            android:id="@+id/scroll_btn"
+            android:text="@string/scroll"
+            style="@style/style_vertical_button"/>
     </LinearLayout>
 </ScrollView>
