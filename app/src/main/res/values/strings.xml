@@ -10,4 +10,13 @@
     <string name="scroll_footer_1">ScrollFooter1</string>
     <string name="scroll_footer_2">ScrollFooter2</string>
     <string name="scroll_footer_3">ScrollFooter3</string>
+    <string name="horizontal_grid">水平表格</string>
+    <string name="vertical_grid">垂直表格</string>
+    <string name="head_grid">表头表格</string>
+    <string name="group_grid">分组表格</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="action_settings">Settings</string>
 </resources>

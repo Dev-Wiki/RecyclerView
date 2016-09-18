@@ -39,12 +39,11 @@ public class ScrollAdapter extends BaseAdapter<String, ScrollAdapter.ScrollHolde
 
     static class ScrollHolder extends BaseHolder {
 
-        @BindView(R.id.scroll_tv)
         TextView scrollTv;
 
         ScrollHolder(ViewGroup parent, @LayoutRes int resId) {
             super(parent, resId);
-            ButterKnife.bind(itemView);
+            scrollTv = getView(R.id.scroll_tv);
         }
     }
 }

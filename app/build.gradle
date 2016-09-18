@@ -29,12 +29,14 @@ repositories {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':recycler')
-    compile 'net.devwiki.common:common:0.0.1'
-    compile 'com.android.support:appcompat-v7:23.3.0'
-    compile 'com.jakewharton:butterknife:8.2.1'
-    apt 'com.jakewharton:butterknife-compiler:8.2.1'
     // https://mvnrepository.com/artifact/io.reactivex/rxandroid
     compile group: 'io.reactivex', name: 'rxandroid', version: '1.2.1'
     // https://mvnrepository.com/artifact/io.reactivex/rxjava
     compile group: 'io.reactivex', name: 'rxjava', version: '1.1.10'
+    compile 'net.devwiki.common:common:0.0.1'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.jakewharton:butterknife:8.2.1'
+    compile 'com.android.support:support-v4:23.4.0'
+    compile 'com.android.support:design:23.4.0'
+    apt 'com.jakewharton:butterknife-compiler:8.2.1'
 }

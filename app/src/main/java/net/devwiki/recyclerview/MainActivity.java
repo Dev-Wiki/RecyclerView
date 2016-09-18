@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
     }
 
-    @OnClick({R.id.single_adapter, R.id.single_touch, R.id.single_support, R.id.chat_btn, R.id.multi_btn})
+    @OnClick({R.id.single_adapter, R.id.single_touch, R.id.single_support, R.id.chat_btn, R.id.multi_btn,
+            R.id.scroll_btn})
     public void onClick(View view) {
         Intent intent = new Intent(this, SingleActivity.class);
         switch (view.getId()) {

@@ -1,12 +1,16 @@
 package net.devwiki.recyclerview.scroll;
 
 import android.os.Bundle;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
+import net.devwiki.log.DevLog;
 import net.devwiki.recyclerview.R;
 
 import java.util.ArrayList;
@@ -29,6 +33,8 @@ public class ScrollActivity extends AppCompatActivity {
     private Button footerBtn2;
     private Button footerBtn3;
 
+    private GestureDetectorCompat detectorCompat;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +55,21 @@ public class ScrollActivity extends AppCompatActivity {
         footerBtn3 = (Button) footerView.findViewById(R.id.footer_btn3);
         adapter.addFooterView(footerView);
         scrollRv.setAdapter(adapter);
+
+        detectorCompat = new GestureDetectorCompat(this, new GestureDetector.SimpleOnGestureListener() {
+            @Override
+            public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+                DevLog.i("distanceY:" + distanceY);
+                if (distanceY > 0 && !scrollRv.canScrollVertically(1)) {
+                    footerBtn2.setVisibility(View.VISIBLE);
+                    footerBtn3.setVisibility(View.VISIBLE);
+                } else {
+                    footerBtn2.setVisibility(View.GONE);
+                    footerBtn3.setVisibility(View.GONE);
+                }
+                return super.onScroll(e1, e2, distanceX, distanceY);
+            }
+        });
     }
 
     private void loadData() {
@@ -57,7 +78,7 @@ public class ScrollActivity extends AppCompatActivity {
                     @Override
                     public void call(Subscriber<? super List<String>> subscriber) {
                         List<String> list = new ArrayList<>();
-                        for (int i = 0; i < 100; i++) {
+                        for (int i = 0; i < 50; i++) {
                             list.add("data-" + i);
                         }
                         subscriber.onNext(list);
@@ -68,19 +89,23 @@ public class ScrollActivity extends AppCompatActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Subscriber<List<String>>() {
                     @Override
-                    public void onCompleted() {
-
-                    }
+                    public void onCompleted() {}
 
                     @Override
                     public void onError(Throwable e) {
-
+                        DevLog.e(e.getMessage());
                     }
 
                     @Override
                     public void onNext(List<String> list) {
-
+                        adapter.fillList(list);
                     }
                 });
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        detectorCompat.onTouchEvent(ev);
+        return super.dispatchTouchEvent(ev);
     }
 }
