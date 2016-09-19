@@ -17,42 +17,56 @@
 package net.devwiki.recycler;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.DrawableRes;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+/**
+ * 普通的分割线,垂直列表绘制每一行的底部分割线,水平列表绘制每一列的右侧分割线
+ */
 public class DividerDecoration extends RecyclerView.ItemDecoration {
 
     public static final int HORIZONTAL_LIST = LinearLayoutManager.HORIZONTAL;
     public static final int VERTICAL_LIST = LinearLayoutManager.VERTICAL;
-    private static final int[] ATTRS = new int[]{
-            android.R.attr.listDivider
-    };
-    private Drawable mDivider;
 
-    private int mOrientation;
+    Drawable mDivider;
+    int mOrientation;
 
     public DividerDecoration(Context context, int orientation) {
-        final TypedArray a = context.obtainStyledAttributes(ATTRS);
-        mDivider = a.getDrawable(0);
-        a.recycle();
-        setOrientation(orientation);
+        mDivider = context.getResources().getDrawable(R.drawable.base_divider);
+        mOrientation = orientation;
     }
 
-    public void setDivider(Drawable mDivider) {
-        this.mDivider = mDivider;
+    public DividerDecoration(Context context, int orientation, @DrawableRes int resId) {
+        mDivider = context.getResources().getDrawable(resId);
+        if (mDivider == null) {
+            mDivider = context.getResources().getDrawable(R.drawable.base_divider);
+        }
+        mOrientation = orientation;
+    }
+
+    public DividerDecoration(Context context, int orientation, Drawable drawable) {
+        mDivider = drawable == null ? context.getResources().getDrawable(R.drawable.base_divider) : drawable;
+        mOrientation = orientation;
+    }
+
+    public void setDivider(Drawable drawable) {
+        if (drawable != null) {
+            mDivider = drawable;
+        }
     }
 
     public void setOrientation(int orientation) {
-        if (orientation != HORIZONTAL_LIST && orientation != VERTICAL_LIST) {
-            throw new IllegalArgumentException("invalid orientation");
-        }
         mOrientation = orientation;
+    }
+
+    public int getOrientation() {
+        return mOrientation;
     }
 
     @Override
@@ -71,10 +85,8 @@ public class DividerDecoration extends RecyclerView.ItemDecoration {
         final int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
             final View child = parent.getChildAt(i);
-            final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
-                    .getLayoutParams();
-            final int top = child.getBottom() + params.bottomMargin +
-                    Math.round(ViewCompat.getTranslationY(child));
+            final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
+            final int top = child.getBottom() + params.bottomMargin + Math.round(ViewCompat.getTranslationY(child));
             final int bottom = top + mDivider.getIntrinsicHeight();
             mDivider.setBounds(left, top, right, bottom);
             mDivider.draw(c);
@@ -88,10 +100,8 @@ public class DividerDecoration extends RecyclerView.ItemDecoration {
         final int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
             final View child = parent.getChildAt(i);
-            final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child
-                    .getLayoutParams();
-            final int left = child.getRight() + params.rightMargin +
-                    Math.round(ViewCompat.getTranslationX(child));
+            final RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
+            final int left = child.getRight() + params.rightMargin + Math.round(ViewCompat.getTranslationX(child));
             final int right = left + mDivider.getIntrinsicHeight();
             mDivider.setBounds(left, top, right, bottom);
             mDivider.draw(c);

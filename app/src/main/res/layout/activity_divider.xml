@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_divider"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="net.devwiki.recyclerview.divider.DividerActivity">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/divider_rv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/control_ll">
+
+    </android.support.v7.widget.RecyclerView>
+
+    <LinearLayout
+        android:id="@+id/control_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:weightSum="3.9"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/hori_btn"
+            android:text="Horizontal"
+            style="@style/divider_control_btn"/>
+
+        <Button
+            android:id="@+id/vert_btn"
+            android:text="Vertical"
+            style="@style/divider_control_btn"/>
+
+        <Button
+            android:id="@+id/grid_h_btn"
+            android:text="GridH"
+            style="@style/divider_control_btn"/>
+
+        <Button
+            android:id="@+id/grid_v_btn"
+            android:text="GridV"
+            style="@style/divider_control_btn"/>
+    </LinearLayout>
+
+</RelativeLayout>

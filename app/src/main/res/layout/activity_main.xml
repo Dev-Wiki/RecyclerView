@@ -49,5 +49,10 @@
             android:id="@+id/scroll_btn"
             android:text="@string/scroll"
             style="@style/style_vertical_button"/>
+
+        <Button
+            android:id="@+id/divider_btn"
+            android:text="@string/divider"
+            style="@style/style_vertical_button"/>
     </LinearLayout>
 </ScrollView>

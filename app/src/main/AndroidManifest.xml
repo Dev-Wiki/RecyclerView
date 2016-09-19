@@ -25,6 +25,8 @@
         </activity>
         <activity android:name=".grid.GridActivity">
         </activity>
+        <activity android:name=".divider.DividerActivity">
+        </activity>
     </application>
 
 </manifest>
