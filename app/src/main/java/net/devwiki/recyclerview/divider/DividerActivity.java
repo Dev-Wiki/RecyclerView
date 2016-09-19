@@ -37,12 +37,17 @@ public class DividerActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mAdapter = new DividerAdapter(this);
-        mLayoutManager = new GridLayoutManager(this, 4, GridLayoutManager.HORIZONTAL, false);
+        mLayoutManager = new GridLayoutManager(this, 4, GridLayoutManager.VERTICAL, false);
         mDividerRv.setLayoutManager(mLayoutManager);
-        mDecoration = new GridDividerDecoration(this, GridDividerDecoration.HORIZONTAL_LIST, R.drawable.divider_drawable);
-        mDividerRv.addItemDecoration(mDecoration);
         mDividerRv.setAdapter(mAdapter);
 
+        HorizontalDividerDecoration horizontalDividerDecoration =
+                new HorizontalDividerDecoration(this, R.drawable.divider_drawable);
+
+        VerticalDividerDecoration verticalDividerDecoration =
+                new VerticalDividerDecoration(this, R.drawable.divider_drawable);
+        mDividerRv.addItemDecoration(horizontalDividerDecoration);
+        mDividerRv.addItemDecoration(verticalDividerDecoration);
         List<String> list = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             list.add(String.valueOf(i));

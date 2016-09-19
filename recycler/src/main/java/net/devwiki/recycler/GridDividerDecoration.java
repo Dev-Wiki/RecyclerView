@@ -100,13 +100,9 @@ public class GridDividerDecoration extends DividerDecoration {
     public void getItemOffsets(Rect outRect, int itemPosition, RecyclerView parent) {
         int spanCount = getSpanCount(parent);
         int childCount = parent.getAdapter().getItemCount();
-        if (mOrientation == HORIZONTAL_LIST) {
+        if (mOrientation == VERTICAL_LIST) {
             if (isLastSpan(parent, itemPosition, spanCount, childCount)) {
-                if (isLastRow(parent, itemPosition, spanCount, childCount)) {
-                    outRect.set(0, 0, 0, 0);
-                } else {
-                    outRect.set(0, 0, mDivider.getIntrinsicWidth(), 0);
-                }
+                outRect.set(0, 0, mDivider.getIntrinsicWidth(), 0);
             } else if (isLastRow(parent, itemPosition, spanCount, childCount)){
                 outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
             } else {
@@ -114,11 +110,7 @@ public class GridDividerDecoration extends DividerDecoration {
             }
         } else {
             if (isLastSpan(parent, itemPosition, spanCount, childCount)) {
-                if (isLastRow(parent, itemPosition, spanCount, childCount)) {
-                    outRect.set(0, 0, 0, 0);
-                } else {
-                    outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
-                }
+                outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
             } else if (isLastRow(parent, itemPosition, spanCount, childCount)){
                 outRect.set(0, 0, mDivider.getIntrinsicWidth(), 0);
             } else {
