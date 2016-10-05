@@ -20,11 +20,9 @@ public class GridActivity extends AppCompatActivity {
     private static final String KEY_HEADER_GRID = "HeaderGridFragment";
     private static final String KEY_GROUP_GRID = "GroupGridFragment";
 
-    @BindView(R.id.grid_fragment)
-    FrameLayout mGridFragment;
-
     private FragmentManager mFragmentManager;
-    private Bundle mBundle;
+    private HorizontalGridFragment mHorizontalGridFragment;
+    private VerticalGridFragment mVerticalGridFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,17 +31,26 @@ public class GridActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         mFragmentManager = getSupportFragmentManager();
-        mBundle = new Bundle();
     }
 
     @OnClick({R.id.hori_grid_btn, R.id.vert_grid_btn, R.id.head_grid_btn, R.id.group_grid_btn})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.hori_grid_btn:
-                HorizontalGridFragment horizontalGridFragment = HorizontalGridFragment.newInstance();
-                mFragmentManager.beginTransaction().replace(R.id.grid_fragment, horizontalGridFragment).commit();
+                if (mHorizontalGridFragment == null) {
+                    mHorizontalGridFragment = HorizontalGridFragment.newInstance();
+                }
+                mFragmentManager.beginTransaction()
+                        .replace(R.id.grid_fragment, mHorizontalGridFragment)
+                        .commit();
                 break;
             case R.id.vert_grid_btn:
+                if (mVerticalGridFragment == null) {
+                    mVerticalGridFragment = VerticalGridFragment.newInstance();
+                }
+                mFragmentManager.beginTransaction()
+                        .replace(R.id.grid_fragment, mVerticalGridFragment)
+                        .commit();
                 break;
             case R.id.head_grid_btn:
                 break;

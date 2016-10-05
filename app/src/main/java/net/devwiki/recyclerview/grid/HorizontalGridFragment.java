@@ -1,6 +1,7 @@
 package net.devwiki.recyclerview.grid;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import net.devwiki.recycler.HorizontalDividerDecoration;
+import net.devwiki.recycler.VerticalDividerDecoration;
 import net.devwiki.recyclerview.MockService;
 import net.devwiki.recyclerview.R;
 import net.devwiki.recyclerview.divider.DividerAdapter;
@@ -47,6 +50,12 @@ public class HorizontalGridFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
         mLayoutManager = new GridLayoutManager(getContext(), 4, GridLayoutManager.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
+        VerticalDividerDecoration verticalDividerDecoration =
+                new VerticalDividerDecoration(getContext(), R.drawable.divider_grid_vertical);
+        mRecyclerView.addItemDecoration(verticalDividerDecoration);
+        HorizontalDividerDecoration horizontalDividerDecoration =
+                new HorizontalDividerDecoration(getContext(), R.drawable.divider_grid_horizontal);
+        mRecyclerView.addItemDecoration(horizontalDividerDecoration);
         return rootView;
     }
 

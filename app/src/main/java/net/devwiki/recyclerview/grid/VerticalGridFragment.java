@@ -9,6 +9,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import net.devwiki.recycler.GridDividerDecoration;
+import net.devwiki.recycler.HorizontalDividerDecoration;
+import net.devwiki.recycler.VerticalDividerDecoration;
 import net.devwiki.recyclerview.MockService;
 import net.devwiki.recyclerview.R;
 
@@ -45,6 +48,9 @@ public class VerticalGridFragment extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
         mLayoutManager = new GridLayoutManager(getContext(), 4, GridLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
+        GridDividerDecoration dividerDecoration =
+                new GridDividerDecoration(getContext(), GridDividerDecoration.VERTICAL_LIST, R.drawable.divider_grid);
+        mRecyclerView.addItemDecoration(dividerDecoration);
         return rootView;
     }
 

@@ -27,7 +27,7 @@ public class VerticalAdapter extends BaseAdapter<String, VerticalAdapter.Divider
 
     @Override
     public DividerHolder createCustomViewHolder(ViewGroup parent, int viewType) {
-        return new DividerHolder(parent, R.layout.item_divier);
+        return new DividerHolder(parent, R.layout.item_grid_vertical);
     }
 
     @Override

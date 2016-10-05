@@ -57,10 +57,16 @@ public class GridDividerDecoration extends DividerDecoration {
     private boolean isLastRow(RecyclerView parent, int pos, int spanCount, int childCount) {
         RecyclerView.LayoutManager layoutManager = parent.getLayoutManager();
         if (layoutManager instanceof GridLayoutManager) {
-            childCount = childCount - childCount % spanCount;
-            // 如果是最后一行，则不需要绘制底部
-            if (pos >= childCount) {
+            if (childCount < spanCount) {
                 return true;
+            } else {
+                int completeRowCount = childCount / spanCount;
+                int div = childCount % spanCount;
+                if (div == 0) {
+                    return pos >= (completeRowCount-1) * spanCount;
+                } else {
+                    return pos >= completeRowCount * spanCount;
+                }
             }
         } else if (layoutManager instanceof StaggeredGridLayoutManager) {
             int orientation = ((StaggeredGridLayoutManager) layoutManager).getOrientation();
@@ -102,11 +108,17 @@ public class GridDividerDecoration extends DividerDecoration {
         int childCount = parent.getAdapter().getItemCount();
         if (mOrientation == VERTICAL_LIST) {
             if (isLastSpan(parent, itemPosition, spanCount, childCount)) {
-                outRect.set(0, 0, mDivider.getIntrinsicWidth(), 0);
-            } else if (isLastRow(parent, itemPosition, spanCount, childCount)){
-                outRect.set(0, 0, 0, mDivider.getIntrinsicHeight());
-            } else {
-                outRect.set(0, 0, mDivider.getIntrinsicWidth(), mDivider.getIntrinsicHeight());
+                if (isLastRow(parent, itemPosition, spanCount, childCount)) {
+                    outRect.set(mDivider.getIntrinsicWidth()/2, 0, 0, 0);
+                } else {
+                    outRect.set(mDivider.getIntrinsicWidth()/2, 0, 0, mDivider.getIntrinsicHeight());
+                }
+            } else{
+                if (isLastSpan(parent, itemPosition, spanCount, childCount)) {
+
+                } else {
+                    outRect.set(0, 0, mDivider.getIntrinsicWidth(), 0);
+                }
             }
         } else {
             if (isLastSpan(parent, itemPosition, spanCount, childCount)) {
