@@ -41,13 +41,12 @@ public class DividerActivity extends AppCompatActivity {
         mDividerRv.setLayoutManager(mLayoutManager);
         mDividerRv.setAdapter(mAdapter);
 
-        HorizontalDividerDecoration horizontalDividerDecoration =
-                new HorizontalDividerDecoration(this, R.drawable.divider_drawable);
-
-        VerticalDividerDecoration verticalDividerDecoration =
-                new VerticalDividerDecoration(this, R.drawable.divider_drawable);
-        mDividerRv.addItemDecoration(horizontalDividerDecoration);
-        mDividerRv.addItemDecoration(verticalDividerDecoration);
+//        HorizontalDividerDecoration horizontalDividerDecoration =
+//                new HorizontalDividerDecoration(this, R.drawable.divider_drawable);
+//        VerticalDividerDecoration verticalDividerDecoration =
+//                new VerticalDividerDecoration(this, R.drawable.divider_drawable);
+//        mDividerRv.addItemDecoration(horizontalDividerDecoration);
+//        mDividerRv.addItemDecoration(verticalDividerDecoration);
         List<String> list = new ArrayList<>();
         for (int i = 0; i < 100; i++) {
             list.add(String.valueOf(i));

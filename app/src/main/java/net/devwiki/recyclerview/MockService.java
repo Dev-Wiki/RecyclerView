@@ -64,4 +64,12 @@ public class MockService {
         }
         return list;
     }
+
+    public static List<String> getStringList() {
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 100; i++) {
+            list.add(String.valueOf(i));
+        }
+        return list;
+    }
 }

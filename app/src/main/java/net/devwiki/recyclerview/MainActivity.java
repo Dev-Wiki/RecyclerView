@@ -7,6 +7,7 @@ import android.view.View;
 
 import net.devwiki.recyclerview.chat.ChatActivity;
 import net.devwiki.recyclerview.divider.DividerActivity;
+import net.devwiki.recyclerview.grid.GridActivity;
 import net.devwiki.recyclerview.multi.MultiActivity;
 import net.devwiki.recyclerview.scroll.ScrollActivity;
 import net.devwiki.recyclerview.single.SingleActivity;
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @OnClick({R.id.single_adapter, R.id.single_touch, R.id.single_support, R.id.chat_btn, R.id.multi_btn,
-            R.id.scroll_btn, R.id.divider_btn})
+            R.id.scroll_btn, R.id.divider_btn, R.id.grid_btn})
     public void onClick(View view) {
         Intent intent = new Intent(this, SingleActivity.class);
         switch (view.getId()) {
@@ -53,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.divider_btn:
                 startActivity(new Intent(this, DividerActivity.class));
+                break;
+            case R.id.grid_btn:
+                startActivity(new Intent(this, GridActivity.class));
                 break;
         }
     }

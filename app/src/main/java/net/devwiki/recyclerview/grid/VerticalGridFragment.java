@@ -1,7 +1,6 @@
 package net.devwiki.recyclerview.grid;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
@@ -12,24 +11,23 @@ import android.view.ViewGroup;
 
 import net.devwiki.recyclerview.MockService;
 import net.devwiki.recyclerview.R;
-import net.devwiki.recyclerview.divider.DividerAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class HorizontalGridFragment extends Fragment {
+public class VerticalGridFragment extends Fragment {
 
     @BindView(R.id.hori_grid_rv)
     RecyclerView mRecyclerView;
 
-    private HorizontalAdapter mAdapter;
+    private VerticalAdapter mAdapter;
     private GridLayoutManager mLayoutManager;
 
-    public HorizontalGridFragment() {
+    public VerticalGridFragment() {
     }
 
-    public static HorizontalGridFragment newInstance() {
-        return new HorizontalGridFragment();
+    public static VerticalGridFragment newInstance() {
+        return new VerticalGridFragment();
     }
 
     @Override
@@ -42,10 +40,10 @@ public class HorizontalGridFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_horizontal_grid, container, false);
         ButterKnife.bind(this, rootView);
 
-        mAdapter = new HorizontalAdapter(getContext());
+        mAdapter = new VerticalAdapter(getContext());
         mAdapter.fillList(MockService.getStringList());
         mRecyclerView.setAdapter(mAdapter);
-        mLayoutManager = new GridLayoutManager(getContext(), 4, GridLayoutManager.HORIZONTAL, false);
+        mLayoutManager = new GridLayoutManager(getContext(), 4, GridLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
         return rootView;
     }

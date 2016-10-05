@@ -1,4 +1,4 @@
-package net.devwiki.recyclerview.divider;
+package net.devwiki.recyclerview.grid;
 
 import android.content.Context;
 import android.support.annotation.LayoutRes;
@@ -10,13 +10,13 @@ import net.devwiki.recycler.BaseHolder;
 import net.devwiki.recyclerview.R;
 
 /**
- * 分割线的Adapter
+ * 垂直表格的Adapter
  * Created by DevWiki on 2016/9/19.
  */
 
-public class DividerAdapter extends BaseAdapter<String, DividerAdapter.DividerHolder>{
+public class VerticalAdapter extends BaseAdapter<String, VerticalAdapter.DividerHolder>{
 
-    public DividerAdapter(Context context) {
+    public VerticalAdapter(Context context) {
         super(context);
     }
 

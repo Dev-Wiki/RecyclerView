@@ -54,5 +54,10 @@
             android:id="@+id/divider_btn"
             android:text="@string/divider"
             style="@style/style_vertical_button"/>
+
+        <Button
+            android:id="@+id/grid_btn"
+            android:text="@string/grid_view"
+            style="@style/style_vertical_button"/>
     </LinearLayout>
 </ScrollView>
